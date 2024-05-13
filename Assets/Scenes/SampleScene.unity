@@ -1091,11 +1091,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _videoPlayerManager:
-    videoPlayer: {fileID: 0}
+    videoPlayer: {fileID: 868425650}
     clipHandler:
-      videoPlayerData: {fileID: 0}
-      skybox: {fileID: 0}
-      video: {fileID: 0}
+      videoPlayerData: {fileID: 11400000, guid: 23dc026a2c069a74b8e49f3f2b12c522, type: 2}
+      skybox: {fileID: 2100000, guid: ec46d2188d4b8774e847e75f1e12a8db, type: 2}
+      video: {fileID: 2100000, guid: 56e6a02a416ecd44ca4ccdcbbc327c3c, type: 2}
       nextVideoClip: {fileID: 0}
 --- !u!1 &139191112
 GameObject:

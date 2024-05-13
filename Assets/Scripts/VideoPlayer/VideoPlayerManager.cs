@@ -17,7 +17,15 @@ namespace VideoPlayer
             _mono = mono;
             clipHandler.Init(mono);
         }
-        
-        public void 
+
+        public void Play()
+        {
+            videoPlayer.Play();
+        }
+
+        public void Pause()
+        {
+            videoPlayer.Pause();
+        }
     }
 }
