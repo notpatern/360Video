@@ -1096,7 +1096,6 @@ MonoBehaviour:
       videoPlayerData: {fileID: 11400000, guid: 23dc026a2c069a74b8e49f3f2b12c522, type: 2}
       skybox: {fileID: 2100000, guid: ec46d2188d4b8774e847e75f1e12a8db, type: 2}
       video: {fileID: 2100000, guid: 56e6a02a416ecd44ca4ccdcbbc327c3c, type: 2}
-      videoRenderTexture: {fileID: 0}
     nextVideoClip: {fileID: 32900000, guid: 5198c19919f80164a886165ed5db8045, type: 3}
 --- !u!1 &139191112
 GameObject:
