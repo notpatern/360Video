@@ -30,7 +30,7 @@ namespace VideoPlayer
 
         public void LoadClip(VideoClip clip)
         {
-            _mono.StartCoroutine(clipHandler.TransitionToNextClipCoroutine(nextVideoClip, videoPlayer));
+            _mono.StartCoroutine(clipHandler.TransitionToNextClipCoroutine(clip, videoPlayer));
         }
     }
 }
