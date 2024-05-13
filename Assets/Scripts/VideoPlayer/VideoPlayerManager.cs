@@ -1,7 +1,7 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Video;
 
 namespace VideoPlayer
 {
@@ -26,6 +26,11 @@ namespace VideoPlayer
         public void Pause()
         {
             videoPlayer.Pause();
+        }
+
+        public void LoadClip(VideoClip clip)
+        {
+            _mono.StartCoroutine(clipHandler.TransitionToNextClipCoroutine(nextVideoClip, videoPlayer));
         }
     }
 }

@@ -15,11 +15,6 @@ public class Manager : MonoBehaviour
         BindAction();
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         
