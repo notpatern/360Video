@@ -10,6 +10,7 @@ namespace UI {
         [SerializeField] Button pauseButton;
         [SerializeField] TMP_Dropdown playBackSpeedSelector;
         [SerializeField] Slider videoTimeLine;
+        [SerializeField] Slider volume;
 
         public void BindPauseButton(UnityAction action) {
             pauseButton.onClick.AddListener(action);
@@ -21,6 +22,10 @@ namespace UI {
 
         public void BindVideoTimeLine(UnityAction<float> action) {
             videoTimeLine.onValueChanged.AddListener(action);
+        }
+
+        public void BindVolume(UnityAction<float> action) {
+            volume.onValueChanged.AddListener(action);
         }
 
         public void UpdatePlayBackTimeLine(float value) {

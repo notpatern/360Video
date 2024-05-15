@@ -1,8 +1,8 @@
 
-using OpenCover.Framework.Model;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.Video;
 
 namespace VideoPlayer
@@ -24,12 +24,20 @@ namespace VideoPlayer
         {
             _mono = mono;
             clipHandler.Init(mono);
-
+            SetVolume(0.25f);
             LoadClip(clip);
         }
 
         public void BindPlayBackTimeLineUi(UnityAction<float> action) {
             OnTimeChange += action;
+        }
+
+        public void UpdateVolume(float volume) {
+            SetVolume(volume);
+        }
+
+        private void SetVolume(float volume) {
+            videoPlayer.SetDirectAudioVolume(0, volume);
         }
 
         public void LoadClip(VideoClip clip) {

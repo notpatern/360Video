@@ -30,6 +30,7 @@ public class Manager : MonoBehaviour
         _uiManager.videoPlayerUi.BindPauseButton(_videoPlayerManager.UpdatePlayBackState);
         _uiManager.videoPlayerUi.BindPlayBackSpeedSelector(_videoPlayerManager.ChangePlayBackSpeed);
         _uiManager.videoPlayerUi.BindVideoTimeLine(_videoPlayerManager.ChangeTimeLine);
+        _uiManager.videoPlayerUi.BindVolume(_videoPlayerManager.UpdateVolume);
     }
 
     private void BindVideoPlayerManager() {
