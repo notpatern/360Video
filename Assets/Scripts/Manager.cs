@@ -1,4 +1,5 @@
 
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using VideoPlayer;
@@ -6,8 +7,7 @@ using VideoPlayer;
 public class Manager : MonoBehaviour
 {
     [SerializeField] private VideoPlayerManager _videoPlayerManager;
-
-    private UnityEvent _transitionToNextVideo = new UnityEvent();
+    [SerializeField] private UiManager _uiManager;
 
     private void Awake()
     {
@@ -22,11 +22,17 @@ public class Manager : MonoBehaviour
 
     private void BindAction()
     {
-        
+        BindUi();
+        BindVideoPlayerManager();
     }
 
-    public void BindTransitionToNextClip()
-    {
-        
+    private void BindUi() {
+        _uiManager.videoPlayerUi.BindPauseButton(_videoPlayerManager.UpdatePlayBackState);
+        _uiManager.videoPlayerUi.BindPlayBackSpeedSelector(_videoPlayerManager.ChangePlayBackSpeed);
+        _uiManager.videoPlayerUi.BindVideoTimeLine(_videoPlayerManager.ChangeTimeLine);
+    }
+
+    private void BindVideoPlayerManager() {
+        _videoPlayerManager.BindPlayBackTimeLineUi(_uiManager.videoPlayerUi.UpdatePlayBackTimeLine);
     }
 }

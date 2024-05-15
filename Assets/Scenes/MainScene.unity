@@ -321,6 +321,17 @@ MonoBehaviour:
       videoPlayerData: {fileID: 11400000, guid: 23dc026a2c069a74b8e49f3f2b12c522, type: 2}
       skyboxMat: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
       videoMat: {fileID: 2100000, guid: 56e6a02a416ecd44ca4ccdcbbc327c3c, type: 2}
+    speedValues:
+    - 0.5
+    - 0.75
+    - 1
+    - 1.5
+    - 2
+  _uiManager:
+    videoPlayerUi:
+      pauseButton: {fileID: 1729955283}
+      playBackSpeedSelector: {fileID: 253953844}
+      videoTimeLine: {fileID: 1142544011}
 --- !u!1 &253953842
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +949,6 @@ GameObject:
   - component: {fileID: 705277739}
   - component: {fileID: 705277738}
   - component: {fileID: 705277737}
-  - component: {fileID: 705277740}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1032,18 +1042,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &705277740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705277735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17fd40d084831d429eb34193433290f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &725014236
 GameObject:
   m_ObjectHideFlags: 0
