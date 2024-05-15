@@ -13,6 +13,7 @@ namespace VideoPlayer
         [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
         [SerializeField] private ClipHandler clipHandler;
         [SerializeField] private float[] speedValues;
+        [SerializeField] private VideoClip clip;
 
         private UnityAction<float> OnTimeChange;
 
@@ -23,6 +24,8 @@ namespace VideoPlayer
         {
             _mono = mono;
             clipHandler.Init(mono);
+
+            LoadClip(clip);
         }
 
         public void BindPlayBackTimeLineUi(UnityAction<float> action) {
@@ -38,10 +41,16 @@ namespace VideoPlayer
         }
 
         public void ChangeTimeLine(float time) {
-            Debug.Log(time);
+            double newTimePosition = time * videoPlayer.clip.length;
+            videoPlayer.time = newTimePosition;
         }
 
         public void UpdatePlayBackState() {
+            if (videoPlayer.clip == null)
+            {
+                return;
+            }
+
             if (_isPlaying) {
                 Pause();
                 _isPlaying = false;
@@ -67,7 +76,7 @@ namespace VideoPlayer
         }
 
         private void UpdateVideoUiTimeLine() {
-            if (videoPlayer.isPlaying && OnTimeChange != null) {
+            if (_isPlaying) {
                 float currentTime = (float)(videoPlayer.clockTime / videoPlayer.clip.length);
                 OnTimeChange(currentTime);
             }

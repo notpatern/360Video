@@ -17,7 +17,7 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        
+        _videoPlayerManager.Update();
     }
 
     private void BindAction()
