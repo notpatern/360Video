@@ -2,7 +2,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 using UnityEngine.Video;
 
 namespace VideoPlayer
@@ -15,7 +14,7 @@ namespace VideoPlayer
         [SerializeField] private float[] speedValues;
         [SerializeField] private VideoClip clip;
 
-        private UnityAction<float> OnTimeChange;
+        private UnityAction<double, double> OnTimeChange;
 
         bool _isPlaying = false;
 
@@ -24,11 +23,16 @@ namespace VideoPlayer
         {
             _mono = mono;
             clipHandler.Init(mono);
+            videoPlayer.isLooping = true;
             SetVolume(0.25f);
             LoadClip(clip);
         }
 
-        public void BindPlayBackTimeLineUi(UnityAction<float> action) {
+        public void BindPlayBackTimeLineUi(UnityAction<double, double> action) {
+            OnTimeChange += action;
+        }
+
+        public void BindTimeStampUi(UnityAction<double, double> action) {
             OnTimeChange += action;
         }
 
@@ -42,6 +46,7 @@ namespace VideoPlayer
 
         public void LoadClip(VideoClip clip) {
             _mono.StartCoroutine(clipHandler.TransitionToNextClipCoroutine(clip, videoPlayer));
+            Play();
         }
 
         public void ChangePlayBackSpeed(int speed) {
@@ -61,32 +66,31 @@ namespace VideoPlayer
 
             if (_isPlaying) {
                 Pause();
-                _isPlaying = false;
                 return;
             }
 
             Play();
-            _isPlaying = true;
         }
 
         private void Play()
         {
+            _isPlaying = true;
             videoPlayer.Play();
         }
 
         private void Pause()
         {
+            _isPlaying = false;
             videoPlayer.Pause();
         }
 
         public void Update() {
-            UpdateVideoUiTimeLine();
+            UpdateVideoUi();
         }
 
-        private void UpdateVideoUiTimeLine() {
+        private void UpdateVideoUi() {
             if (_isPlaying) {
-                float currentTime = (float)(videoPlayer.clockTime / videoPlayer.clip.length);
-                OnTimeChange(currentTime);
+                OnTimeChange(videoPlayer.clockTime, videoPlayer.clip.length);
             }
         }
     }

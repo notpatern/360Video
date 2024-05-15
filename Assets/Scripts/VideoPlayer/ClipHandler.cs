@@ -41,7 +41,7 @@ namespace VideoPlayer
 
             // once everything is set, fades back to the current skybox
             _mono.StartCoroutine(FadeSkyBox(videoPlayerData.fadeTime, true));
-            yield return null;
+            yield return new WaitForSeconds(videoPlayerData.fadeTime);
         }
 
         void LoadClip(VideoClip clip, UnityEngine.Video.VideoPlayer player)

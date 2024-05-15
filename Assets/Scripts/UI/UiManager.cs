@@ -5,6 +5,10 @@ namespace UI {
     [Serializable]
     public class UiManager {
         public VideoPlayerUi videoPlayerUi;
+        public VideoFolderUi videoFolderUi;
 
+        public void Init() {
+            videoFolderUi.Init();
+        }
     }
 }

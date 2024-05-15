@@ -1,7 +1,6 @@
 
 using UI;
 using UnityEngine;
-using UnityEngine.Events;
 using VideoPlayer;
 
 public class Manager : MonoBehaviour
@@ -12,6 +11,7 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         _videoPlayerManager.Init(this);
+        _uiManager.Init();
         BindAction();
     }
 
@@ -35,5 +35,6 @@ public class Manager : MonoBehaviour
 
     private void BindVideoPlayerManager() {
         _videoPlayerManager.BindPlayBackTimeLineUi(_uiManager.videoPlayerUi.UpdatePlayBackTimeLine);
+        _videoPlayerManager.BindTimeStampUi(_uiManager.videoPlayerUi.UpdateTimeStamp);
     }
 }
