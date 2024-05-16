@@ -89,9 +89,7 @@ namespace VideoPlayer
         }
 
         private void UpdateVideoUi() {
-            if (_isPlaying) {
-                OnTimeChange(videoPlayer.clockTime, videoPlayer.clip.length);
-            }
+            OnTimeChange(videoPlayer.clockTime, videoPlayer.clip.length);
         }
     }
 }
