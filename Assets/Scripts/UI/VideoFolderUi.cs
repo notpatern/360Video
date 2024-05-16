@@ -1,14 +1,21 @@
 using Content;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 namespace UI {
     [Serializable]
     public class VideoFolderUi {
         [SerializeField] Canvas canvas;
-        [SerializeField] Transform spawnPoint;
+        [SerializeField] Transform cardSpawnPoint;
+        [SerializeField] Transform playVideoSpawnPoint;
         [SerializeField] GameObject videoCardPrefab;
+        [SerializeField] GameObject playVideoButtonPrefab;
+
+        Button playVideoButton;
+        UnityEvent<VideoClip> loadVideoEvent = new UnityEvent<VideoClip>();
 
         // testing
         [SerializeField] VideoClip[] videoClips;
@@ -26,13 +33,23 @@ namespace UI {
             videoCards = new VideoCard[videoClips.Length];
 
             for (int i = 0; i < videoClips.Length; i++) { 
-                videoCards[i] = new VideoCard(videoClips[i], "video " + i.ToString(), spawnPoint, videoCardPrefab, SelectCard);
+                videoCards[i] = new VideoCard(videoClips[i], "video " + i.ToString(), cardSpawnPoint, videoCardPrefab, SelectCard);
             }
+
+            playVideoButton = UnityEngine.Object.Instantiate(playVideoButtonPrefab, playVideoSpawnPoint).GetComponent<Button>();
         }
 
         private void SelectCard(VideoClip clip) {
             selectedClip = clip;
-            Debug.Log(clip.name);
+        }
+
+        public void BindPlayVideoButton(UnityAction<VideoClip> action) {
+
+            loadVideoEvent.AddListener(action);
+
+            playVideoButton.onClick.AddListener(() => {
+                loadVideoEvent.Invoke(selectedClip);
+            });
         }
     }
 }

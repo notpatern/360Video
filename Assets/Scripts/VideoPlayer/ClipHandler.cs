@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using ScriptableObjects;
-using Unity.VRTemplate;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -25,7 +22,7 @@ namespace VideoPlayer
         {
             _mono = mono;
 
-            ChangeSkybox(skyboxMat);
+            ChangeSkybox(skyboxMat, 1);
         }
 
         public IEnumerator TransitionToNextClipCoroutine(VideoClip clip, UnityEngine.Video.VideoPlayer player)
@@ -37,7 +34,7 @@ namespace VideoPlayer
             yield return new WaitForSeconds(videoPlayerData.fadeTime);
 
             LoadMaterial();
-            ChangeSkybox(videoMat);
+            ChangeSkybox(videoMat, 0);
 
             // once everything is set, fades back to the current skybox
             _mono.StartCoroutine(FadeSkyBox(videoPlayerData.fadeTime, true));
@@ -65,18 +62,19 @@ namespace VideoPlayer
             videoRenderTexture = new RenderTexture((int)clip.width, (int)clip.height, 1);
         }
 
-        void ChangeSkybox(Material newSkybox)
+        void ChangeSkybox(Material newSkybox, float exposure)
         {
             RenderSettings.skybox = newSkybox;
+            RenderSettings.skybox.SetFloat(Exposure, exposure);
             DynamicGI.UpdateEnvironment();
         }
 
         IEnumerator FadeSkyBox(float timer, bool desiredState)
         {
             float elapsedTime = 0f;
-            float exposure;
+            float exposure = 0f;
 
-            while (elapsedTime < timer)
+            while (elapsedTime <= timer)
             {
                 if (desiredState)
                 {
@@ -93,6 +91,11 @@ namespace VideoPlayer
                 elapsedTime += Time.deltaTime;
 
                 yield return null;
+            }
+
+            if (exposure < 1f && desiredState) {
+                RenderSettings.skybox.SetFloat(Exposure, 1f);
+                DynamicGI.UpdateEnvironment();
             }
         }
     }

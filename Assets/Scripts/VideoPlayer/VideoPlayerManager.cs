@@ -25,7 +25,6 @@ namespace VideoPlayer
             clipHandler.Init(mono);
             videoPlayer.isLooping = true;
             SetVolume(0.25f);
-            LoadClip(clip);
         }
 
         public void BindPlayBackTimeLineUi(UnityAction<double, double> action) {
@@ -45,6 +44,7 @@ namespace VideoPlayer
         }
 
         public void LoadClip(VideoClip clip) {
+            Debug.Log("Clip Loaded");
             _mono.StartCoroutine(clipHandler.TransitionToNextClipCoroutine(clip, videoPlayer));
             Play();
         }

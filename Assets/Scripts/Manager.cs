@@ -10,8 +10,8 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        _videoPlayerManager.Init(this);
         _uiManager.Init();
+        _videoPlayerManager.Init(this);
         BindAction();
     }
 
@@ -31,6 +31,7 @@ public class Manager : MonoBehaviour
         _uiManager.videoPlayerUi.BindPlayBackSpeedSelector(_videoPlayerManager.ChangePlayBackSpeed);
         _uiManager.videoPlayerUi.BindVideoTimeLine(_videoPlayerManager.ChangeTimeLine);
         _uiManager.videoPlayerUi.BindVolume(_videoPlayerManager.UpdateVolume);
+        _uiManager.videoFolderUi.BindPlayVideoButton(_videoPlayerManager.LoadClip);
     }
 
     private void BindVideoPlayerManager() {
