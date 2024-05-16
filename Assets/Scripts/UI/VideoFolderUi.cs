@@ -19,10 +19,15 @@ namespace UI {
 
         // testing
         [SerializeField] VideoClip[] videoClips;
+        [SerializeField] Texture[] thumbnails;
 
         [HideInInspector] public VideoClip selectedClip;
 
         VideoCard[] videoCards;
+
+
+        // MAKE CARD DATA FOR PREFAB WITH TEXTURE VIDEO CLIP AND NAME
+
 
         public void Init() {
             InitButtons();
@@ -33,7 +38,7 @@ namespace UI {
             videoCards = new VideoCard[videoClips.Length];
 
             for (int i = 0; i < videoClips.Length; i++) { 
-                videoCards[i] = new VideoCard(videoClips[i], "video " + i.ToString(), cardSpawnPoint, videoCardPrefab, SelectCard);
+                videoCards[i] = new VideoCard(videoClips[i], thumbnails[i], "video " + i.ToString(), cardSpawnPoint, videoCardPrefab, SelectCard);
             }
 
             playVideoButton = UnityEngine.Object.Instantiate(playVideoButtonPrefab, playVideoSpawnPoint).GetComponent<Button>();

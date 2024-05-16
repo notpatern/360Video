@@ -12,16 +12,18 @@ namespace Content {
         Transform _transform;
         Button _button;
         TextMeshProUGUI _buttonText;
+        Texture _thumbnail;
         string _text;
 
         UnityEvent<VideoClip> GetVideoClipAction = new UnityEvent<VideoClip>();
 
-        public VideoCard(VideoClip video, string text, Transform transform, GameObject videoCardPrefab, UnityAction<VideoClip> action) {
+        public VideoCard(VideoClip video, Texture thumbnail, string text, Transform transform, GameObject videoCardPrefab, UnityAction<VideoClip> action) {
 
             _video = video;
             _transform = transform;
             _videoCardPrefab = videoCardPrefab;
             _text = text;
+            _thumbnail = thumbnail;
             _videoCardGameObject = Object.Instantiate(_videoCardPrefab, _transform);
             Init();
             BindButton(action);
@@ -31,6 +33,8 @@ namespace Content {
             _button = _videoCardGameObject.GetComponent<Button>();
             _buttonText = _videoCardGameObject.GetComponentInChildren<TextMeshProUGUI>();
             _buttonText.text = _text;
+
+            _button.GetComponentInChildren<RawImage>().texture = _thumbnail;
         }
 
         public VideoClip GetVideoClip() {
