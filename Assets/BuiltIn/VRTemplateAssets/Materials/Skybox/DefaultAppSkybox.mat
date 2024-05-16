@@ -69,7 +69,7 @@ Material:
     - _Exponent: 1
     - _Exponent1: 9
     - _Exponent2: 9
-    - _Exposure: 1
+    - _Exposure: 0.007575035
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

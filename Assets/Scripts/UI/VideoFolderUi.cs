@@ -1,4 +1,5 @@
 using Content;
+using ScriptableObjects;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,16 +19,11 @@ namespace UI {
         UnityEvent<VideoClip> loadVideoEvent = new UnityEvent<VideoClip>();
 
         // testing
-        [SerializeField] VideoClip[] videoClips;
-        [SerializeField] Texture[] thumbnails;
+        [SerializeField] VideoData[] videoData;
 
         [HideInInspector] public VideoClip selectedClip;
 
         VideoCard[] videoCards;
-
-
-        // MAKE CARD DATA FOR PREFAB WITH TEXTURE VIDEO CLIP AND NAME
-
 
         public void Init() {
             InitButtons();
@@ -35,10 +31,10 @@ namespace UI {
 
         private void InitButtons() {
 
-            videoCards = new VideoCard[videoClips.Length];
+            videoCards = new VideoCard[videoData.Length];
 
-            for (int i = 0; i < videoClips.Length; i++) { 
-                videoCards[i] = new VideoCard(videoClips[i], thumbnails[i], "video " + i.ToString(), cardSpawnPoint, videoCardPrefab, SelectCard);
+            for (int i = 0; i < videoData.Length; i++) { 
+                videoCards[i] = new VideoCard(videoData[i].clip, videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
             }
 
             playVideoButton = UnityEngine.Object.Instantiate(playVideoButtonPrefab, playVideoSpawnPoint).GetComponent<Button>();
