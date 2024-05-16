@@ -10,9 +10,9 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        //_uiManager.Init();
-        //_videoPlayerManager.Init(this);
-        //BindAction();
+        _uiManager.Init();
+        _videoPlayerManager.Init(this);
+        BindAction();
     }
 
     private void Update()
