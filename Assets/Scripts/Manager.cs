@@ -1,18 +1,27 @@
 
+using Network;
 using UI;
 using UnityEngine;
 using VideoPlayer;
 
 public class Manager : MonoBehaviour
 {
+    [SerializeField] private VideoLoader _videoLoader;
     [SerializeField] private VideoPlayerManager _videoPlayerManager;
     [SerializeField] private UiManager _uiManager;
+    [SerializeField] private GameEventScriptableObject playerPositionGameEvent;
+    [SerializeField] private Transform playerPosition;
 
     private void Awake()
     {
+        _videoLoader.Init();
         _uiManager.Init();
         _videoPlayerManager.Init(this);
         BindAction();
+    }
+
+    private void Start() {
+        playerPositionGameEvent.TriggerEvent(playerPosition);
     }
 
     private void Update()

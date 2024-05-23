@@ -29,6 +29,10 @@ namespace Content {
             BindButton(action);
         }
 
+        public VideoCard(string url, Texture thumbnail, string text, Transform transform, GameObject videoCardPrefab, UnityAction<VideoClip> action) {
+
+        }
+
         private void Init() {
             _button = _videoCardGameObject.GetComponent<Button>();
             _buttonText = _videoCardGameObject.GetComponentInChildren<TextMeshProUGUI>();

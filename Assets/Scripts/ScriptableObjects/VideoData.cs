@@ -6,6 +6,7 @@ namespace ScriptableObjects {
     public class VideoData : ScriptableObject {
         public string videoName;
         public VideoClip clip;
+        public string url;
         public Texture thumbnailTexture;
     }
 }

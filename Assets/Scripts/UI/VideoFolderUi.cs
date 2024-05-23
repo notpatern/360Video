@@ -34,6 +34,9 @@ namespace UI {
             videoCards = new VideoCard[videoData.Length];
 
             for (int i = 0; i < videoData.Length; i++) { 
+                if (videoData[i].url != null) {
+                    videoCards[i] = new VideoCard(videoData[i].url, videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
+                }
                 videoCards[i] = new VideoCard(videoData[i].clip, videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
             }
 

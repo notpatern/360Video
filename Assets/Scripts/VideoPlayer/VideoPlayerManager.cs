@@ -54,6 +54,9 @@ namespace VideoPlayer
         }
 
         public void ChangeTimeLine(float time) {
+            if (videoPlayer.clip == null) {
+                return;
+            }
             double newTimePosition = time * videoPlayer.clip.length;
             videoPlayer.time = newTimePosition;
         }
@@ -89,7 +92,9 @@ namespace VideoPlayer
         }
 
         private void UpdateVideoUi() {
-            OnTimeChange(videoPlayer.clockTime, videoPlayer.clip.length);
+            if (videoPlayer.clip != null) {
+                OnTimeChange(videoPlayer.clockTime, videoPlayer.clip.length);
+            }
         }
     }
 }
