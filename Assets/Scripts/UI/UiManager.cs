@@ -7,8 +7,8 @@ namespace UI {
         public VideoPlayerUi videoPlayerUi;
         public VideoFolderUi videoFolderUi;
 
-        public void Init() {
-            videoFolderUi.Init();
+        public void Init(string[] urls) {
+            videoFolderUi.Init(urls);
         }
     }
 }

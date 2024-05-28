@@ -14,8 +14,8 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        _videoLoader.Init();
-        _uiManager.Init();
+        string[] urls = _videoLoader.Execute();
+        _uiManager.Init(urls);
         _videoPlayerManager.Init(this);
         BindAction();
     }

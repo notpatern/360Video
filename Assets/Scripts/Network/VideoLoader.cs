@@ -1,5 +1,7 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -11,11 +13,29 @@ namespace Network {
         [SerializeField] string contentServerAdress;
 
         string folder;
+        string jsonString;
+        JObject json;
+        string[] urls;
 
         HttpClient client = new HttpClient();
 
-        public void Init() {
+        public string[] Execute() {
             folder = MakeGetRequest(contentServerAdress).ToString();
+            jsonString = ConvertXmlToJsonString(folder);
+            json = JObject.Parse(jsonString);
+            urls = GetVideoUrls(json).ToArray();
+
+            return urls;
+        }
+
+        private List<string> GetVideoUrls(JObject json) {
+            List<string> urls = new List<string>();
+
+            foreach (KeyValuePair<string, JToken> obj in json) {
+                urls.Add(json[obj.Key.ToString()].ToString());
+            }
+
+            return urls;
         }
 
         private async Task<string> MakeGetRequest(string url) {

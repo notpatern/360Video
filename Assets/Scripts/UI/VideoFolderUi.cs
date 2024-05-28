@@ -25,7 +25,7 @@ namespace UI {
 
         VideoCard[] videoCards;
 
-        public void Init() {
+        public void Init(string[] urls) {
             InitButtons();
         }
 
