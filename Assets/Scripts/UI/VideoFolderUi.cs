@@ -47,6 +47,13 @@ namespace UI {
             selectedClip = clip;
         }
 
+        private void SelectCard(string clip) {
+
+            // TODO: once the web server is setup, rework all of this
+
+            // selectedClip = clip;
+        }
+
         public void BindPlayVideoButton(UnityAction<VideoClip> action) {
 
             loadVideoEvent.AddListener(action);

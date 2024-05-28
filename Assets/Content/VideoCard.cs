@@ -9,6 +9,7 @@ namespace Content {
         GameObject _videoCardPrefab;
         GameObject _videoCardGameObject;
         VideoClip _video;
+        string _path;
         Transform _transform;
         Button _button;
         TextMeshProUGUI _buttonText;
@@ -16,6 +17,7 @@ namespace Content {
         string _text;
 
         UnityEvent<VideoClip> GetVideoClipAction = new UnityEvent<VideoClip>();
+        UnityEvent<string> GetVideoUrlAction = new UnityEvent<string>();
 
         public VideoCard(VideoClip video, Texture thumbnail, string text, Transform transform, GameObject videoCardPrefab, UnityAction<VideoClip> action) {
 
@@ -26,11 +28,18 @@ namespace Content {
             _thumbnail = thumbnail;
             _videoCardGameObject = Object.Instantiate(_videoCardPrefab, _transform);
             Init();
-            BindButton(action);
+            BindButtonVideoClip(action);
         }
 
-        public VideoCard(string url, Texture thumbnail, string text, Transform transform, GameObject videoCardPrefab, UnityAction<VideoClip> action) {
-
+        public VideoCard(string url, Texture thumbnail, string text, Transform transform, GameObject videoCardPrefab, UnityAction<string> action) {
+            _path = url;
+            _transform = transform;
+            _videoCardPrefab = videoCardPrefab;
+            _text = text;
+            _thumbnail = thumbnail;
+            _videoCardGameObject = Object.Instantiate(_videoCardPrefab, _transform);
+            Init();
+            BindButtonVideoUrl(action);
         }
 
         private void Init() {
@@ -45,11 +54,23 @@ namespace Content {
             return _video;
         }
 
-        public void BindButton(UnityAction<VideoClip> action) {
+        public string GetVideoUrl() {
+            return _path;
+        }
+
+        public void BindButtonVideoClip(UnityAction<VideoClip> action) {
             GetVideoClipAction.AddListener(action);
 
             _button.onClick.AddListener(() => {
                 GetVideoClipAction.Invoke(GetVideoClip());
+            });
+        }
+
+        public void BindButtonVideoUrl(UnityAction<string> action) {
+            GetVideoUrlAction.AddListener(action);
+
+            _button.onClick.AddListener(() => {
+                GetVideoUrlAction.Invoke(GetVideoUrl());
             });
         }
 
