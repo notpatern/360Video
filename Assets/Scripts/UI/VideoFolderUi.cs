@@ -26,16 +26,16 @@ namespace UI {
         VideoCard[] videoCards;
 
         public void Init(string[] urls) {
-            InitButtons();
+            InitButtons(urls);
         }
 
-        private void InitButtons() {
+        private void InitButtons(string[] urls) {
 
             videoCards = new VideoCard[videoData.Length];
 
             for (int i = 0; i < videoData.Length; i++) { 
-                if (videoData[i].url != null) {
-                    videoCards[i] = new VideoCard(videoData[i].url, videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
+                if (videoData[i].url != "") {
+                    videoCards[i] = new VideoCard(urls[i], videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
                 }
                 videoCards[i] = new VideoCard(videoData[i].clip, videoData[i].thumbnailTexture, videoData[i].videoName, cardSpawnPoint, videoCardPrefab, SelectCard);
             }
