@@ -4933,6 +4933,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 261358009}
     - target: {fileID: 2316321545993949828, guid: 0643d92511f217d41a3516a89e575d7c, type: 3}
+      propertyPath: _videoPlayerManager.clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316321545993949828, guid: 0643d92511f217d41a3516a89e575d7c, type: 3}
       propertyPath: _uiManager.videoFolderUi.canvas
       value: 
       objectReference: {fileID: 7917088487583514943}

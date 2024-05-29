@@ -12,15 +12,20 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameEventScriptableObject playerPositionGameEvent;
     [SerializeField] private Transform playerPosition;
 
+    string[] urls;
+
     private void Awake()
     {
-        string[] urls = _videoLoader.Execute();
+        urls = _videoLoader.Execute();
         _uiManager.Init(urls);
         _videoPlayerManager.Init(this);
         BindAction();
     }
 
     private void Start() {
+
+        
+        
         playerPositionGameEvent.TriggerEvent(playerPosition);
     }
 

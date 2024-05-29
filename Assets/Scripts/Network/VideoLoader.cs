@@ -20,7 +20,8 @@ namespace Network {
         HttpClient client = new HttpClient();
 
         public string[] Execute() {
-            folder = MakeGetRequest(contentServerAdress).ToString();
+            folder = MakeGetRequest(contentServerAdress);
+
             jsonString = ConvertXmlToJsonString(folder);
             json = JObject.Parse(jsonString);
             urls = GetVideoUrls(json).ToArray();
@@ -38,11 +39,11 @@ namespace Network {
             return urls;
         }
 
-        private async Task<string> MakeGetRequest(string url) {
-            HttpResponseMessage response = await client.GetAsync(url);
+        private string MakeGetRequest(string url) {
+            HttpResponseMessage response = client.GetAsync(url).Result;
             response.EnsureSuccessStatusCode();
 
-            string responseBody = await response.Content.ReadAsStringAsync();
+            string responseBody = response.Content.ReadAsStringAsync().Result;
             Debug.Log(responseBody);
             return responseBody;
         }

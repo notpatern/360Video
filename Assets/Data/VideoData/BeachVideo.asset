@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BeachVideo
   m_EditorClassIdentifier: 
   videoName: Beach
-  clip: {fileID: 32900000, guid: 058f089d2d8daa54aad1c09a072e189a, type: 3}
+  clip: {fileID: 32900000, guid: a2d0f7980a13f844f94349aed9461841, type: 3}
+  url: 
   thumbnailTexture: {fileID: 2800000, guid: 16483a96513d4964e804ee0ae4eb4354, type: 3}

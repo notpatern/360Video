@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PeruVIdeo
   m_EditorClassIdentifier: 
   videoName: Peru
-  clip: {fileID: 32900000, guid: 6ecddf3b96ce5024693e377b4d095a95, type: 3}
+  clip: {fileID: 32900000, guid: 47954ff1f6c5e87448b997739083ed52, type: 3}
+  url: 
   thumbnailTexture: {fileID: 2800000, guid: 1e6320f61e942ad4d94beebf3c55223f, type: 3}
